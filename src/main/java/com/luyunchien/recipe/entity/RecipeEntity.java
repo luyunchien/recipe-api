@@ -1,13 +1,16 @@
-package com.roinnsenn.recipe.entity;
+package com.luyunchien.recipe.entity;
 
 import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;
 
+/**
+ * In future this will be stored in a Database
+ */
 @Data
 @Builder
-public class Recipe {
+public class RecipeEntity {
     String name;
     List<String> ingredients;
     List<String> steps;

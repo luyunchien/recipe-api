@@ -8,7 +8,7 @@
 		<version>2.7.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.roinnsenn</groupId>
+	<groupId>com.luyunchien</groupId>
 	<artifactId>recipe</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>recipe</name>
@@ -39,6 +39,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.openapitools</groupId>
+			<artifactId>jackson-databind-nullable</artifactId>
+			<version>0.2.6</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -55,7 +60,34 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<version>6.0.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<!-- https://openapi-generator.tech/docs/generators/spring/ -->
+							<inputSpec>${project.basedir}/openapi.json</inputSpec>
+							<generatorName>spring</generatorName>
+							<configOptions>
+								<interfaceOnly>true</interfaceOnly>
+								<useTags>true</useTags>
+								<annotationLibrary>none</annotationLibrary>
+								<documentationProvider>none</documentationProvider>
+							</configOptions>
+							<apiPackage>com.luyunchien.recipe.api</apiPackage>
+							<modelPackage>com.luyunchien.recipe.api.model</modelPackage>
+							<invokerPackage>com.luyunchien.recipe.api.handler</invokerPackage>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
+
 	</build>
 
 </project>

@@ -1,4 +1,4 @@
-package com.roinnsenn.recipe;
+package com.luyunchien.recipe;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

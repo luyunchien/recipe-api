@@ -1,0 +1,231 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Recipe Server",
+    "version": "1.0.1"
+  },
+  "components": {
+    "schemas": {
+      "Recipe": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "ingredients",
+          "steps"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "ingredients": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "CreateRecipeDetails": {
+        "type": "object",
+        "required": [
+          "name",
+          "ingredients",
+          "steps"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "ingredients": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "UpdateRecipeDetails": {
+        "type": "object",
+        "required": [
+          "name",
+          "ingredients",
+          "steps"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "ingredients": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/recipes": {
+      "get": {
+        "tags": ["recipes"],
+        "summary": "List all recipes",
+        "operationId": "listRecipe",
+        "responses": {
+          "200": {
+            "description": "All recipes info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Recipe"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["recipes"],
+        "summary": "Create a recipe",
+        "operationId": "createRecipe",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRecipeDetails"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A recipe is created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Recipe"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/recipes/{id}": {
+      "put": {
+        "tags": ["recipes"],
+        "summary": "Update a recipe",
+        "operationId": "updateRecipe",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateRecipeDetails"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A recipe is updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Recipe"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["recipes"],
+        "summary": "Delete a recipe",
+        "operationId": "deleteRecipe",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A recipe is deleted"
+          }
+        }
+      },
+      "get": {
+        "tags": ["recipes"],
+        "summary": "Get a recipe",
+        "operationId": "getRecipe",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The Recipe info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Recipe"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
