@@ -1,14 +1,13 @@
 package com.luyunchien.recipe.entity;
 
 import io.hypersistence.utils.hibernate.type.json.JsonType;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
-import org.hibernate.annotations.TypeDef;
 
-import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -16,7 +15,6 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@TypeDef(name = "json", typeClass = JsonType.class)
 public class RecipeEntity {
 
     @Id
@@ -26,11 +24,11 @@ public class RecipeEntity {
     @Column
     String name;
 
-    @Type(type = "json")
+    @Type(JsonType.class)
     @Column(columnDefinition = "json")
     List<String> ingredients;
 
-    @Type(type = "json")
+    @Type(JsonType.class)
     @Column(columnDefinition = "json")
     List<String> steps;
 

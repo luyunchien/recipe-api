@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.5</version>
+		<version>3.0.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.luyunchien</groupId>
@@ -37,7 +37,7 @@
 		</dependency>
 		<dependency>
 			<groupId>io.hypersistence</groupId>
-			<artifactId>hypersistence-utils-hibernate-55</artifactId>
+			<artifactId>hypersistence-utils-hibernate-60</artifactId>
 			<version>3.3.2</version>
 		</dependency>
 		<dependency>
@@ -59,6 +59,21 @@
 			<artifactId>jackson-databind-nullable</artifactId>
 			<version>0.2.6</version>
 		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>2.0.1.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>javax.annotation-api</artifactId>
+			<version>1.3.2</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>4.0.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -78,7 +93,7 @@
 			<plugin>
 				<groupId>org.openapitools</groupId>
 				<artifactId>openapi-generator-maven-plugin</artifactId>
-				<version>6.0.0</version>
+				<version>6.6.0</version>
 				<executions>
 					<execution>
 						<goals>
