@@ -74,6 +74,11 @@
 			<artifactId>javax.servlet-api</artifactId>
 			<version>4.0.1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.zalando</groupId>
+			<artifactId>problem-spring-web-starter</artifactId>
+			<version>0.29.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>

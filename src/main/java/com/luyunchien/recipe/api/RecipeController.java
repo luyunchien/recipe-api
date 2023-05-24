@@ -6,10 +6,10 @@ import com.luyunchien.recipe.api.model.UpdateRecipeDetails;
 import com.luyunchien.recipe.entity.RecipeEntity;
 import com.luyunchien.recipe.repositories.RecipeRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.server.ResponseStatusException;
+import org.zalando.problem.Problem;
+import org.zalando.problem.Status;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -68,6 +68,9 @@ public class RecipeController implements RecipesApi {
 
     private RecipeEntity findByID(int id){
         return recipeRepository.findById(id).orElseThrow(()->
-                new ResponseStatusException(HttpStatus.NOT_FOUND, "entity doesn't exist"));
+                Problem.builder()
+                .withStatus(Status.NOT_FOUND)
+                .withDetail("Recipe not found")
+                .build());
     }
 }
