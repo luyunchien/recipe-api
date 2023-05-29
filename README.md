@@ -12,3 +12,5 @@ My attempt to learn REST APIs in Java.
 - Persistence using [Hibernate ORM](https://hibernate.org/orm/).
 - Error handling using [problem-spring-web](https://github.com/zalando/problem-spring-web) to produce consistent
   RFC 7807 responses.
+- [Integration testing](server/src/test/java/com/luyunchien/recipe/api/RecipeControllerIT.java) 
+  using [generated java client](java-client/pom.xml) from OpenAPI specification.

@@ -3,19 +3,27 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.0.6</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<artifactId>recipe-reactor</artifactId>
+		<groupId>com.luyunchien</groupId>
+		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<groupId>com.luyunchien</groupId>
+
 	<artifactId>recipe</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>recipe</name>
-	<description>Demo project for Spring Boot</description>
-	<properties>
-		<java.version>17</java.version>
-	</properties>
+	<description>Spring Boot recipe server</description>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- Spring Boot BOM -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>3.0.6</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -53,6 +61,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.openapitools</groupId>
@@ -79,7 +93,12 @@
 			<artifactId>problem-spring-web-starter</artifactId>
 			<version>0.29.1</version>
 		</dependency>
-
+		<dependency>
+			<groupId>com.luyunchien</groupId>
+			<artifactId>recipe-java-client</artifactId>
+			<version>${project.version}</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -119,6 +138,19 @@
 							<modelPackage>com.luyunchien.recipe.api.model</modelPackage>
 							<invokerPackage>com.luyunchien.recipe.api.handler</invokerPackage>
 						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- Run the *IT tests -->
+			<plugin>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.22.2</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
 					</execution>
 				</executions>
 			</plugin>
